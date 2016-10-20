@@ -1,7 +1,8 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-  
+var gulp = require('gulp'),
+    concat = require('gulp-concat'),
+    sass = require('gulp-sass'),
+    connect = require('gulp-connect') 
+
 gulp.task('default', function() {
  // place code for your default task here
 }); 
@@ -23,8 +24,14 @@ gulp.task('templates', function() {
    .src('src/**/*.html')
    .pipe(gulp.dest('dist'));
 });
+gulp.task('connect', function() {
+  connect.server({
+    root: 'dist',
+    livereload: true
+  });
+});
 
-gulp.task('build', ['scripts', 'templates', 'sass']);
+gulp.task('build', ['scripts', 'templates', 'sass', 'connect']);
 
 gulp.task('watch', function() {
  gulp.watch('src/javascript/**/*.js', ['scripts']);
@@ -32,4 +39,4 @@ gulp.task('watch', function() {
  gulp.watch('src/**/*.sass', ['sass']);
 });
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build', 'watch', 'sass', 'connect']);
