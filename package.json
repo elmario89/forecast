@@ -1,0 +1,30 @@
+{
+  "name": "forecast",
+  "version": "1.0.0",
+  "description": "Weather forecast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "gulp",
+    "serve": "http-server -c-1 ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elmario89/forecast.git"
+  },
+  "author": "Mikhail SMirnov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elmario89/forecast/issues"
+  },
+  "homepage": "https://github.com/elmario89/forecast#readme",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.2",
+    "http-server": "^0.9.0"
+  }
+}

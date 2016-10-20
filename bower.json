@@ -1,0 +1,21 @@
+{
+  "name": "forecast",
+  "description": "Weather forecast",
+  "main": "index.js",
+  "authors": [
+    "Mikhail SMirnov"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/elmario89/forecast",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "dist/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
