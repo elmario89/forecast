@@ -5,7 +5,6 @@ angular.module('forecast')
     $stateProvider
       .state('forecast', {
         url: "/forecast",
-        templateUrl: "js/forecast.html",
+        templateUrl: "js/forecastTmpl.html"
       })
-
   });
