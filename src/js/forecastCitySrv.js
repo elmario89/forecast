@@ -2,12 +2,23 @@
   'use strict';
   angular
   .module('forecast')
-  .service('$forecastCirtySrv', ['$http', forecastCirtySrv]);
+  .service('$getCitySrv', ['$http', getCitySrv]);
 
-  function forecastCirtySrv($http) {
+  function getCitySrv($http) {
 
     this.getCity = function(lat, lng) {
-      console.log(lat, lng)
+
+      $http({
+        method: 'GET',
+        url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon='+ lng +'&appid=e314e59cc5a10bf8699c6cfafd41d145',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function(response) {
+        var data = response.data;
+        console.log(data);
+      });
+
     };
   }
 })();

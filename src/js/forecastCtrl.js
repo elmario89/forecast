@@ -1,7 +1,7 @@
 angular.module('forecast')
-  .controller('forecastCtrl', ['$scope', '$forecastCirtySrv', forecastCtrl]);
+  .controller('forecastCtrl', ['$scope', '$getCitySrv', forecastCtrl]);
 
-function forecastCtrl($scope, $forecastCirtySrv) {
+function forecastCtrl($scope, $getCitySrv) {
 
   $scope.date = new Date();
 
@@ -19,7 +19,7 @@ function forecastCtrl($scope, $forecastCirtySrv) {
       var lat = position.coords.latitude;
       var lng = position.coords.longitude;
 
-      $forecastCirtySrv.getCity(lat, lng);
+      $getCitySrv.getCity(lat, lng);
   }
 
 };
