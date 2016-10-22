@@ -8,9 +8,10 @@
 
     this.getCity = function(lat, lng) {
 
+      var API_KEY = window.localStorage.getItem('API_KEY');
       $http({
         method: 'GET',
-        url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon='+ lng +'&appid=e314e59cc5a10bf8699c6cfafd41d145',
+        url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon='+ lng +'&appid=' + API_KEY,
         headers: {
           'Content-Type': 'application/json'
         }
