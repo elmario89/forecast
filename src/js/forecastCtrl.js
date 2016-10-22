@@ -1,7 +1,7 @@
 angular.module('forecast')
-  .controller('forecastCtrl', ['$scope', '$getCitySrv', forecastCtrl]);
+  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', forecastCtrl]);
 
-function forecastCtrl($scope, $getCitySrv) {
+function forecastCtrl($scope, $getWeatherSrv) {
 
   $scope.date = new Date();
 
@@ -15,10 +15,14 @@ function forecastCtrl($scope, $getCitySrv) {
 
   $scope.getPosition();
 
+  var lat, lng;
   function successFunction(position) {
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
-    $getCitySrv.getCity(lat, lng);
-  }
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
 
+    $getWeatherSrv.getWeather(lat, lng).then(function(response) {
+        $scope.weather = response
+        console.log($scope.weather);
+      });
+  }
 };
