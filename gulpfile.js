@@ -29,26 +29,15 @@ gulp.task('connect', function() {
     root: 'dist'
   });
 });
-gulp.task('fonts', function() {
-    return gulp
-      .src(['src/assets/**/*.*'])
-      .pipe(gulp.dest('dist/assets'));
-});
-gulp.task('images', function() {
-    return gulp
-      .src(['src/assets/**/*.*'])
-      .pipe(gulp.dest('dist/assets'));
-});
 
 
-gulp.task('build', ['scripts', 'templates', 'sass', 'connect', 'fonts', 'images']);
+
+gulp.task('build', ['scripts', 'templates', 'sass', 'connect']);
 
 gulp.task('watch', function() {
- gulp.watch('src/javascript/**/*.js', ['scripts']);
+ gulp.watch('src/**/*.js', ['scripts']);
  gulp.watch('src/**/*.html', ['templates']);
  gulp.watch('src/**/*.sass', ['sass']);
- gulp.watch('src/**/*.*', ['fonts']);
- gulp.watch('src/**/*.*', ['images']);
 });
 
-gulp.task('default', ['build', 'watch', 'sass', 'connect', 'fonts', 'images']);
+gulp.task('default', ['build', 'watch', 'sass', 'connect']);
