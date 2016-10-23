@@ -1,11 +1,15 @@
 <div class='wrapper' ng-controller='forecastCtrl'>
   <div class='header'>{{date | date:'dd MMMM yyyy'}}</div>
 
-  <div class='content'>
+  <div class='content' ng-if='!wrongCity'>
     <div class='situation'>Weather: {{weather.situation}}<img ng-src="{{weather.icon}}"></div>
     <div class='temperature'>Temperature: {{weather.temp}} °C</div>
     <div class='wind'>Wind speed: {{weather.wind}} m/s</div>
     <div class='city'>{{city}}</div>
+  </div>
+
+  <div class='content' ng-if='wrongCity'>
+    <h1>Something went wrong... Try to choose another city</h1>
   </div>
   
   <div class='footer'>

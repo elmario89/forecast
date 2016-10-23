@@ -8,7 +8,6 @@
 
     this.getWeather = function(city, lat, lng) {
       var API_KEY = window.localStorage.getItem('API_KEY'), url;
-      console.log(city, lat, lng)
 
       if (city) {
         url = 'http://api.openweathermap.org/data/2.5/weather?q='+ city + '&appid=' + API_KEY + '&units=metric';
@@ -32,7 +31,7 @@
           return data;
       }, function(error) {
         if (error.status == 502) {
-          alert('No ctiy was found');
+          alert('No city was found');
         } else {
           alert(error.statusText);
         }

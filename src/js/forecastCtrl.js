@@ -56,13 +56,17 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
     });
   };
 
-
+  $scope.wrongCity = false;
   $scope.chooseCity = function(city) {
     var lat, lng;
     $scope.city = city;
     $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
-      $scope.weather = response;
-      $scope.weather.temp = Math.round($scope.weather.temp);
+      if (!response) {
+        $scope.wrongCity = true;
+      } else {
+        $scope.weather = response;
+        $scope.weather.temp = Math.round($scope.weather.temp);
+      }
     });
   }
 
