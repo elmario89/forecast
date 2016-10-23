@@ -4,6 +4,8 @@ angular.module('forecast')
 function forecastCtrl($scope, $getWeatherSrv, $q) {
 
   $scope.date = new Date();
+  $scope.wrongCity;
+  $scope.showPreloader = true;
 
   $scope.getPosition = function() {
     if (navigator.geolocation) {
@@ -21,8 +23,13 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
         city;
 
     $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
-      $scope.weather = response;
-      $scope.weather.temp = Math.round($scope.weather.temp);
+      if (!response) {
+        $scope.wrongCity = true;
+      } else {
+        $scope.weather = response;
+        $scope.weather.temp = Math.round($scope.weather.temp);
+      }
+      $scope.showPreloader = false;
     });
 
     var promise = getCity(lat, lng);
@@ -56,8 +63,10 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
     });
   };
 
-  $scope.wrongCity = false;
   $scope.chooseCity = function(city) {
+    $scope.wrongCity = false;
+    $scope.showPreloader = true;
+
     var lat, lng;
     $scope.city = city;
     $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
@@ -67,6 +76,8 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
         $scope.weather = response;
         $scope.weather.temp = Math.round($scope.weather.temp);
       }
+
+      $scope.showPreloader = false;
     });
   }
 

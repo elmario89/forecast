@@ -1,4 +1,7 @@
 <div class='wrapper' ng-controller='forecastCtrl'>
+  <div class='preloader' ng-if='showPreloader'>
+    <span>Loading... Please wait..</span>
+  </div>
   <div class='header'>{{date | date:'dd MMMM yyyy'}}</div>
 
   <div class='content' ng-if='!wrongCity'>
