@@ -65,7 +65,6 @@ function forecastCtrl($scope, $getWeatherSrv, $downloadForecastSrv, $q) {
 
   $scope.chooseCity = function(city) {
     $scope.wrongCity = false;
-    var lat, lng;
 
     if (!city) {
       alert("Type any city in input");
@@ -73,7 +72,7 @@ function forecastCtrl($scope, $getWeatherSrv, $downloadForecastSrv, $q) {
       $scope.showPreloader = true;
 
       $scope.city = city;
-      $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
+      $getWeatherSrv.getWeather(city).then(function(response) {
         if (!response) {
           $scope.wrongCity = true;
         } else {
