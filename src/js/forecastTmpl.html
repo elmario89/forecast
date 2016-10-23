@@ -23,7 +23,7 @@
       </form>
     </div>
     <div class='save'>
-      <button ng-click='downloadForecast(weather, city)'>Download forecast</button>
+      <button ng-disabled='wrongCity' ng-click='downloadForecast(weather, city)'>Download forecast</button>
     </div>
   </div>
 </div>
