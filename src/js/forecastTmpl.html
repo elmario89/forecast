@@ -10,10 +10,10 @@
   
   <div class='footer'>
     <div class='choose-city'>
-      <select name="" id="">
-        <option value="1">Kazan</option>
-        <option value="2">Saint-p</option>  
-      </select>
+    <form ng-submit='chooseCity(city)'>
+      <input type="text" ng-model='city'>
+      <button type='submit'>Choose city</button>
+    </form>
     </div>
     <div class='save'>
       <button>Save data</button>
