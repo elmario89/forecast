@@ -74,6 +74,7 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
 
   $scope.chooseCity = function(city) {
     var lat, lng;
+    $scope.city = city;
     $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
 
       $scope.weather = {
@@ -84,7 +85,6 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
       };
 
       $scope.weather.temp = Math.round($scope.weather.temp);
-      console.log(response);
     });
   }
 
