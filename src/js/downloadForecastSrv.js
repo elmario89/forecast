@@ -7,7 +7,6 @@
   function downloadForecastSrv() {
 
     this.doDownload = function(weather, city) {
-      delete weather.icon;
       var forecast = `City: ${city}; situation: ${weather.situation}; temp: ${weather.temp}; wind speed: ${weather.wind};`;
 
       var filename = city;
