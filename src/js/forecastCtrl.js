@@ -24,7 +24,8 @@ function forecastCtrl($scope, $getWeatherSrv, $getCitySrv) {
       $scope.weather = {
         situation: response.weather[0].description,
         temp: response.main.temp,
-        wind: response.wind.speed
+        wind: response.wind.speed,
+        icon: "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
       };
 
       $scope.weather.temp = Math.round($scope.weather.temp);
