@@ -84,8 +84,7 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
   $scope.downloadForecast = function(weather, city) {
     delete weather.icon;
 
-    var forecast = 'City: ' + city + '; situation: ' + weather.situation + '; temp: ' + weather.temp + '; wind speed: ' + 
-    weather.wind + ';';
+    var forecast = `City: ${city}; situation: ${weather.situation}; temp: ${weather.temp}; wind speed: ${weather.wind};`;
 
     var filename = 'forecast';
     var element = document.createElement('a');
