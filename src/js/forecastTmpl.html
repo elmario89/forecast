@@ -2,10 +2,11 @@
   <div class='header'>{{date | date:'dd MMMM yyyy'}}</div>
 
   <div class='content'>
-    <div class='situation'>Clear sky</div>
+    <div class='situation'>Weather: {{weather.situation}}</div>
     <div class='image'>sunny</div>
-    <div class='temperature'>3</div>
-    <div class='city'>Kazan</div>
+    <div class='temperature'>Temperature: {{weather.temp}} °C</div>
+    <div class='wind'>Wind speed: {{weather.wind}} m/s</div>
+    <div class='city'>City: Kazan</div>
   </div>
   
   <div class='footer'>

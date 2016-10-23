@@ -20,8 +20,15 @@ function forecastCtrl($scope, $getWeatherSrv, $getCitySrv) {
     lng = position.coords.longitude;
 
     $getWeatherSrv.getWeather(lat, lng).then(function(response) {
-      $scope.weather = response;
-      console.log($scope.weather);
+
+      $scope.weather = {
+        situation: response.weather[0].description,
+        temp: response.main.temp,
+        wind: response.wind.speed
+      };
+
+      $scope.weather.temp = Math.round($scope.weather.temp);
+      console.log(response);
     });
 
     // here we add reverse geocoding because openWeatherMap doesn't show city by my positioning

@@ -11,7 +11,7 @@
 
       var promise = $http({
         method: 'GET',
-        url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon='+ lng +'&appid=' + API_KEY,
+        url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon='+ lng +'&appid=' + API_KEY + '&units=metric',
         headers: {
           'Content-Type': 'application/json'
         }
