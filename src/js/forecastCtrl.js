@@ -1,7 +1,7 @@
 angular.module('forecast')
-  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', '$q', forecastCtrl]);
+  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', '$downloadForecastSrv', '$q', forecastCtrl]);
 
-function forecastCtrl($scope, $getWeatherSrv, $q) {
+function forecastCtrl($scope, $getWeatherSrv, $downloadForecastSrv, $q) {
 
   $scope.date = new Date();
   $scope.wrongCity;
@@ -86,22 +86,26 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
     }
   }
 
-  $scope.downloadForecast = function(weather, city) {
-    delete weather.icon;
+  $scope.downloadForecast =  function(weather, city) {
+    $downloadForecastSrv.doDownload(weather, city);
+  };
 
-    var forecast = `City: ${city}; situation: ${weather.situation}; temp: ${weather.temp}; wind speed: ${weather.wind};`;
+  // $scope.downloadForecast = function(weather, city) {
+  //   delete weather.icon;
 
-    var filename = city;
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + forecast);
-    element.setAttribute('download', filename);
+  //   var forecast = `City: ${city}; situation: ${weather.situation}; temp: ${weather.temp}; wind speed: ${weather.wind};`;
 
-    element.style.display = 'none';
-    document.body.appendChild(element);
+  //   var filename = city;
+  //   var element = document.createElement('a');
+  //   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + forecast);
+  //   element.setAttribute('download', filename);
 
-    element.click();
+  //   element.style.display = 'none';
+  //   document.body.appendChild(element);
 
-    document.body.removeChild(element);
-  }
+  //   element.click();
+
+  //   document.body.removeChild(element);
+  // }
 
 };
