@@ -1,7 +1,7 @@
 angular.module('forecast')
-  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', '$getCitySrv', forecastCtrl]);
+  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', '$q', forecastCtrl]);
 
-function forecastCtrl($scope, $getWeatherSrv, $getCitySrv) {
+function forecastCtrl($scope, $getWeatherSrv, $q) {
 
   $scope.date = new Date();
 
@@ -33,10 +33,15 @@ function forecastCtrl($scope, $getWeatherSrv, $getCitySrv) {
       // console.log(response);
     });
 
-    $scope.city = getCity(lat, lng).then(function(city){
-      console.log(city);
-    });
-    // console.log($scope.city)
+    // getCity(lat, lng).then(function(city){
+    //   console.log(city);
+    //   $scope.city = city;
+    // });
+    
+    var promise = getCity(lat, lng);
+    promise.then(function(city) {
+      $scope.city = city;
+    })
   }
 
   // here we add reverse geocoding because openWeatherMap doesn't show city by my positioning
@@ -44,7 +49,7 @@ function forecastCtrl($scope, $getWeatherSrv, $getCitySrv) {
   // by google maps
   function getCity(lat, lng) {
     // console.log(lat, lng)
-    return new Promise(function(resolve, reject) {
+    return $q(function(resolve, reject) {
       var latlng = new google.maps.LatLng(lat, lng);
       var geocoder = new google.maps.Geocoder();
 

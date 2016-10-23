@@ -5,13 +5,13 @@
     <div class='situation'>Weather: {{weather.situation}}<img ng-src="{{weather.icon}}"></div>
     <div class='temperature'>Temperature: {{weather.temp}} °C</div>
     <div class='wind'>Wind speed: {{weather.wind}} m/s</div>
-    <div class='city'>City: Kazan</div>
+    <div class='city'>{{city}}</div>
   </div>
   
   <div class='footer'>
     <div class='choose-city'>
-    <form ng-submit='chooseCity(city)'>
-      <input type="text" ng-model='city'>
+    <form ng-submit='chooseCity(name)'>
+      <input type="text" ng-model='name'>
       <button type='submit'>Choose city</button>
     </form>
     </div>

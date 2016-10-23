@@ -23,12 +23,8 @@
           'Content-Type': 'application/json'
         }
       }).then(function(response) {
-        if (response.cod == 502) {
-          alert(response.message);
-        } else {
           var data = response.data;
           return data;
-        }
       });
 
       return promise;
