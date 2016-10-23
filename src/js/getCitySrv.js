@@ -20,7 +20,7 @@
 
           for (var i = 0; i < arrAddress.length; i++) {
             if (arrAddress[i].types[0] == "locality") {
-              console.log(arrAddress[i].long_name); // City name - now we should find how to use Eng language
+              console.log(arrAddress[i].long_name);
             }
           }
         }
