@@ -2,13 +2,13 @@
   <div class='preloader' ng-if='showPreloader'>
     <span>Loading... Please wait..</span>
   </div>
-  <div class='header'>{{date | date:'dd MMMM yyyy'}}</div>
+  <div class='header'>Today: {{date | date:'dd MMMM yyyy'}}</div>
 
   <div class='content' ng-if='!wrongCity'>
     <div class='situation'>Weather: {{weather.situation}}<img ng-src="{{weather.icon}}"></div>
-    <div class='temperature'>Temperature: {{weather.temp}} °C</div>
+    <div class='temperature'>{{weather.temp}}°</div>
     <div class='wind'>Wind speed: {{weather.wind}} m/s</div>
-    <div class='city'>{{city}}</div>
+    <div class='city'>City: {{city}}</div>
   </div>
 
   <div class='content' ng-if='wrongCity'>
@@ -17,10 +17,10 @@
   
   <div class='footer'>
     <div class='choose-city'>
-    <form ng-submit='chooseCity(cityName)'>
-      <input type="text" ng-model='cityName'>
-      <button type='submit'>Choose city</button>
-    </form>
+      <form ng-submit='chooseCity(cityName)'>
+        <input type="text" ng-model='cityName' placeholder='Type your city here...'>
+        <button type='submit'>Choose city</button>
+      </form>
     </div>
     <div class='save'>
       <button ng-click='downloadForecast(weather, city)'>Download forecast</button>

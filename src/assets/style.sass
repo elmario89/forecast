@@ -45,19 +45,38 @@ div[ui-view]
     padding: 15px
 
   .content
-    padding-bottom: 80px
     position: absolute
     top: 50%
     left: 50%
-    height: 150px
     width: 360px
-    transform: translate(-180px, -75px)
+    transform: translate(-50%, -50%)
+    .temperature
+      font-size: 95px
+      font-family: Open Sans Light
 
   .footer
     background-color: #1c9dd1
     padding-top: 15px
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 100%
+    height: 80px
+
+    .choose-city
+      margin-bottom: 10px
+      input
+        height: 25px
+        padding: 0 6px
+        border: none
+
+    .save
+      button
+        width: 80%
+
+  button
+    border: none
+    padding: 5px 10px
+    background-color: #29b529
+    color: #ffffff
+    font-size: 15px

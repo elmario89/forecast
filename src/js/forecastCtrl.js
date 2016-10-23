@@ -65,20 +65,25 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
 
   $scope.chooseCity = function(city) {
     $scope.wrongCity = false;
-    $scope.showPreloader = true;
-
     var lat, lng;
-    $scope.city = city;
-    $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
-      if (!response) {
-        $scope.wrongCity = true;
-      } else {
-        $scope.weather = response;
-        $scope.weather.temp = Math.round($scope.weather.temp);
-      }
 
-      $scope.showPreloader = false;
-    });
+    if (!city) {
+      alert("Type any city in input");
+    } else {
+      $scope.showPreloader = true;
+
+      $scope.city = city;
+      $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
+        if (!response) {
+          $scope.wrongCity = true;
+        } else {
+          $scope.weather = response;
+          $scope.weather.temp = Math.round($scope.weather.temp);
+        }
+
+        $scope.showPreloader = false;
+      });
+    }
   }
 
   $scope.downloadForecast = function(weather, city) {
@@ -86,7 +91,7 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
 
     var forecast = `City: ${city}; situation: ${weather.situation}; temp: ${weather.temp}; wind speed: ${weather.wind};`;
 
-    var filename = 'forecast';
+    var filename = city;
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + forecast);
     element.setAttribute('download', filename);
