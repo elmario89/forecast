@@ -21,23 +21,10 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
         city;
 
     $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
-
-      $scope.weather = {
-        situation: response.weather[0].description,
-        temp: response.main.temp,
-        wind: response.wind.speed,
-        icon: "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
-      };
-
+      $scope.weather = response;
       $scope.weather.temp = Math.round($scope.weather.temp);
-      // console.log(response);
     });
 
-    // getCity(lat, lng).then(function(city){
-    //   console.log(city);
-    //   $scope.city = city;
-    // });
-    
     var promise = getCity(lat, lng);
     promise.then(function(city) {
       $scope.city = city;
@@ -48,7 +35,6 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
   // it does show station with name 'Kalininskoe', so we convert coordinates to city name
   // by google maps
   function getCity(lat, lng) {
-    // console.log(lat, lng)
     return $q(function(resolve, reject) {
       var latlng = new google.maps.LatLng(lat, lng);
       var geocoder = new google.maps.Geocoder();
@@ -62,7 +48,6 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
 
           for (var i = 0; i < arrAddress.length; i++) {
             if (arrAddress[i].types[0] == "locality") {
-              // console.log(arrAddress[i].long_name);
               resolve(arrAddress[i].long_name);
             }
           }
@@ -76,14 +61,7 @@ function forecastCtrl($scope, $getWeatherSrv, $q) {
     var lat, lng;
     $scope.city = city;
     $getWeatherSrv.getWeather(city, lat, lng).then(function(response) {
-
-      $scope.weather = {
-        situation: response.weather[0].description,
-        temp: response.main.temp,
-        wind: response.wind.speed,
-        icon: "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
-      };
-
+      $scope.weather = response;
       $scope.weather.temp = Math.round($scope.weather.temp);
     });
   }

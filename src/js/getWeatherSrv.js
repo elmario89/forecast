@@ -23,8 +23,19 @@
           'Content-Type': 'application/json'
         }
       }).then(function(response) {
-          var data = response.data;
+          var data = {
+            situation: response.data.weather[0].description,
+            temp: response.data.main.temp,
+            wind: response.data.wind.speed,
+            icon: "http://openweathermap.org/img/w/" + response.data.weather[0].icon + ".png"
+          };
           return data;
+      }, function(error) {
+        if (error.status == 502) {
+          alert('No ctiy was found');
+        } else {
+          alert(error.statusText);
+        }
       });
 
       return promise;
