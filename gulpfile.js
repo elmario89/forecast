@@ -2,7 +2,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     sass = require('gulp-sass'),
     connect = require('gulp-connect'),
-    inlineFonts = require('gulp-inline-fonts');
+    clean = require('gulp-clean');
 
 gulp.task('default', function() {
  // place code for your default task here
@@ -29,6 +29,10 @@ gulp.task('fonts', function() {
   return gulp
     .src('src/assets/fonts/*.ttf')
     .pipe(gulp.dest('dist/assets/fonts'));
+});
+gulp.task('clean', function () {
+  return gulp.src('dist', {read: false})
+    .pipe(clean());
 });
 gulp.task('connect', function() {
   connect.server({
