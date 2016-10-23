@@ -1,7 +1,7 @@
 angular.module('forecast')
-  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', forecastCtrl]);
+  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', '$getCitySrv', forecastCtrl]);
 
-function forecastCtrl($scope, $getWeatherSrv) {
+function forecastCtrl($scope, $getWeatherSrv, $getCitySrv) {
 
   $scope.date = new Date();
 
@@ -15,14 +15,18 @@ function forecastCtrl($scope, $getWeatherSrv) {
 
   $scope.getPosition();
 
-  var lat, lng;
   function successFunction(position) {
     lat = position.coords.latitude;
     lng = position.coords.longitude;
 
     $getWeatherSrv.getWeather(lat, lng).then(function(response) {
-        $scope.weather = response
-        console.log($scope.weather);
-      });
+      $scope.weather = response;
+      console.log($scope.weather);
+    });
+
+    // here we add reverse geocoding because openWeatherMap doesn't show city by my positioning
+    // it does show station with name 'Kalininskoe', so we convert coordinates to city name
+    // by google maps
+    var city = $getCitySrv.getCity(lat, lng);
   }
 };
