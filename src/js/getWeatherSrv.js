@@ -39,5 +39,11 @@
 
       return promise;
     };
+
+    this.get5daysWeather = function(city) {
+      var test = city;
+
+      return test;
+    }
   }
 })();
