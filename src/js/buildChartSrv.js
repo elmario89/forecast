@@ -9,11 +9,11 @@
       var container = document.querySelector('.content'),
           width = container.offsetWidth,
           height = 500,
-          barHeight = 11;
+          barWidth = width / data.length;
 
-      var x = d3.scale.linear()
-        .domain([0, d3.max(data)])
-        .range([0, width]);
+      var y = d3.scale.linear()
+        .domain([0, d3.max(data, function(d) { return d; })])
+        .range([height, 0]);
 
       var chart = d3.select('.chart')
         .attr('width', width)
@@ -22,11 +22,13 @@
       var bar = chart.selectAll('g')
         .data(data)
         .enter().append('g')
-        .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+        .attr("transform", function(d, i) { return "translate(" + i * barWidth + ", 0)"; });
 
       bar.append('rect')
-        .attr('width', x)
-        .attr('height', barHeight - 1);
+        .attr('class', 'bar')
+        .attr("y", function(d) { return y(d); })
+        .attr('height', function(d) { return height - y(d); })
+        .attr('width', barWidth);
     }
   }
 })();
