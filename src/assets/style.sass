@@ -20,7 +20,7 @@ div[ui-view]
   height: 100%
 
 .wrapper
-  width: 360px
+  // width: 360px
   margin: 0 auto
   background-color: #21a5da
   color: #ffffff
@@ -50,9 +50,19 @@ div[ui-view]
     left: 50%
     width: 360px
     transform: translate(-50%, -50%)
+
     .temperature
       font-size: 95px
       font-family: Open Sans Light
+
+    .situation
+      span
+        display: inline-block
+        vertical-align: middle
+
+      img
+        display: inline-block
+        vertical-align: middle
 
   .footer
     background-color: #1c9dd1
@@ -61,7 +71,11 @@ div[ui-view]
     left: 0
     bottom: 0
     width: 100%
-    height: 80px
+    height: auto
+
+    &-wrapper
+      max-width: 360px
+      margin: 0 auto
 
     .choose-city
       margin-bottom: 10px
@@ -71,8 +85,10 @@ div[ui-view]
         border: none
 
     .save
-      button
-        width: 80%
+      &-button-container
+        margin-bottom: 10px
+        button
+          width: 80%
 
   button
     border: none

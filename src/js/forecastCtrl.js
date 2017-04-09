@@ -1,7 +1,7 @@
 angular.module('forecast')
-  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', '$downloadForecastSrv', '$q', forecastCtrl]);
+  .controller('forecastCtrl', ['$scope', '$getWeatherSrv', '$downloadForecastSrv', '$state', '$q', forecastCtrl]);
 
-function forecastCtrl($scope, $getWeatherSrv, $downloadForecastSrv, $q) {
+function forecastCtrl($scope, $getWeatherSrv, $downloadForecastSrv, $state, $q) {
 
   $scope.date = new Date();
   $scope.wrongCity;
@@ -87,5 +87,9 @@ function forecastCtrl($scope, $getWeatherSrv, $downloadForecastSrv, $q) {
 
   $scope.downloadForecast =  function(weather, city) {
     $downloadForecastSrv.doDownload(weather, city);
+  };
+
+  $scope.showAhead = function() {
+    $state.go('ahead');
   };
 };

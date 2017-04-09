@@ -5,7 +5,11 @@
   <div class='header'>Today: {{date | date:'dd MMMM yyyy'}}</div>
 
   <div class='content' ng-if='!wrongCity'>
-    <div class='situation'>Weather: {{weather.situation}}<img ng-src="{{weather.icon}}"></div>
+    <div class='situation'>
+      <span>
+        Weather: {{weather.situation}}
+      </span>
+      <img ng-src="{{weather.icon}}"></div>
     <div class='temperature'>{{weather.temp}}°</div>
     <div class='wind'>Wind speed: {{weather.wind}} m/s</div>
     <div class='city'>City: {{city}}</div>
@@ -16,14 +20,23 @@
   </div>
   
   <div class='footer'>
-    <div class='choose-city'>
+    <div class='footer-wrapper'>
+      <div class='choose-city'>
       <form ng-submit='chooseCity(cityName)'>
         <input type="text" ng-model='cityName' placeholder='Type your city here...'>
         <button type='submit'>Choose city</button>
       </form>
     </div>
     <div class='save'>
-      <button ng-disabled='wrongCity' ng-click='downloadForecast(weather, city)'>Download forecast</button>
+      <div class='save-button-container'>
+        <button ng-disabled='wrongCity' ng-click='downloadForecast(weather, city)'>Download forecast</button>
+      </div>
+
+      <div class='save-button-container'>
+        <button ng-disabled='wrongCity' ng-click='showAhead()'>Show 10 days temperature</button>
+      </div>
+
+    </div>
     </div>
   </div>
 </div>
