@@ -14,7 +14,7 @@ angular.module('forecast')
         templateUrl: "js/forecastTmpl.html"
       })
       .state('ahead', {
-        url: "/forecastAhead",
+        url: "/forecastAhead/:city",
         templateUrl: "js/forecastAheadTmpl.html"
       })
   });

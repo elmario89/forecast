@@ -90,6 +90,6 @@ function forecastCtrl($scope, $getWeatherSrv, $downloadForecastSrv, $state, $q) 
   };
 
   $scope.showAhead = function() {
-    $state.go('ahead');
+    $state.go('ahead', {city: $scope.city});
   };
 };
