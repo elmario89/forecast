@@ -20,13 +20,12 @@ div[ui-view]
   height: 100%
 
 .wrapper
-  // width: 360px
   margin: 0 auto
   background-color: #21a5da
   color: #ffffff
   text-align: center
   position: relative
-  max-height: 750px
+  height: 100%
 
   .preloader
     position: absolute
@@ -50,6 +49,9 @@ div[ui-view]
     left: 50%
     width: 360px
     transform: translate(-50%, -50%)
+
+    &.-secondary
+      width: 100%
 
     .temperature
       font-size: 95px

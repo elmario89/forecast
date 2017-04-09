@@ -1,19 +1,27 @@
 angular.module('forecast')
-  .controller('aheadCtrl', ['$scope', '$state', '$getWeatherSrv', aheadCtrl]);
+  .controller('aheadCtrl', ['$scope', '$state', '$getWeatherSrv', '$buildChart', aheadCtrl]);
 
-function aheadCtrl($scope, $state, $getWeatherSrv) {
+function aheadCtrl($scope, $state, $getWeatherSrv, $buildChart) {
+  $scope.showPreloader = true;
   $scope.city = $state.params.city;
 
   $scope.test = $getWeatherSrv.get5daysWeather($scope.city).then(function(response) {
-    var weather = response;
+    var weather = response.data.list;
 
-    console.log(weather);
+    var length = weather.length-1;
 
-    var length = weather.data.list.length-1;
+    $scope.startDate = weather[0].dt * 1000;
+    $scope.endDate = weather[length].dt * 1000;
 
-    $scope.startDate = weather.data.list[0].dt * 1000;
-    $scope.endDate = weather.data.list[length].dt * 1000;
+    var temp = [];
+
+    for (var i = 0; i < weather.length; i++) {
+      var item = weather[i].main.temp;
+      temp.push(item);
+    }
 
     $scope.showPreloader = false;
+
+    $buildChart.buildBarChart(temp);
   });
 };
