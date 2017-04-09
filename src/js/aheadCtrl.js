@@ -4,13 +4,16 @@ angular.module('forecast')
 function aheadCtrl($scope, $state, $getWeatherSrv) {
   $scope.city = $state.params.city;
 
-  // $getWeatherSrv.get5daysWeather($scope.city).then(function(response) {
-  //   console.log(response);
-  //   // $scope.weather = response;
-  //   // $scope.weather.temp = Math.round($scope.weather.temp);
-  
-  //   // $scope.showPreloader = false;
-  // });
+  $scope.test = $getWeatherSrv.get5daysWeather($scope.city).then(function(response) {
+    var weather = response;
 
-  $scope.test = $getWeatherSrv.get5daysWeather($scope.city);
+    console.log(weather);
+
+    var length = weather.data.list.length-1;
+
+    $scope.startDate = weather.data.list[0].dt * 1000;
+    $scope.endDate = weather.data.list[length].dt * 1000;
+
+    $scope.showPreloader = false;
+  });
 };

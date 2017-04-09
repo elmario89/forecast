@@ -6,8 +6,9 @@
 
   function getWeatherSrv($http) {
 
+    var API_KEY = window.localStorage.getItem('API_KEY'), url, promise;
+
     this.getWeather = function(city, lat, lng) {
-      var API_KEY = window.localStorage.getItem('API_KEY'), url;
 
       if (city) {
         url = 'http://api.openweathermap.org/data/2.5/weather?q='+ city + '&appid=' + API_KEY + '&units=metric';
@@ -15,7 +16,7 @@
         url = 'http://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon='+ lng +'&appid=' + API_KEY + '&units=metric';
       }
 
-      var promise = $http({
+      promise = $http({
         method: 'GET',
         url: url,
         headers: {
@@ -41,9 +42,27 @@
     };
 
     this.get5daysWeather = function(city) {
-      var test = city;
 
-      return test;
+      url = 'http://api.openweathermap.org/data/2.5/forecast?q='+ city + '&appid=' + API_KEY + '&units=metric';
+
+      promise = $http({
+        method: 'GET',
+        url: url,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function(response) {
+          var data = response;
+          return data;
+      }, function(error) {
+        if (error.status == 502) {
+          alert('No city was found');
+        } else {
+          alert(error.statusText);
+        }
+      });
+
+      return promise;
     }
   }
 })();
